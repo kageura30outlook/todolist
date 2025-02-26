@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Todo App</h1>
+
+        <!-- Status Filter -->
+        <div class="filter">
+            <form method="POST" action="/filter">
+                <label for="status">Filter by Status:</label>
+                <select name="status" id="status">
+                    <option value="all">All</option>
+                    <option value="not-started">Not Started</option>
+                    <option value="still-working">Still Working</option>
+                    <option value="done">Done</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <!-- Priority Filter -->
+        <div class="filter_priority">
+            <form method="POST" action="/filter_priority">
+                <label for="priority">Filter by Priority:</label>
+                <select name="priority" id="priority">
+                    <option value="all">All</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        </div>
+
+        <!-- Add Todo Form -->
+        <form method="POST" action="/add">
+            <input type="text" name="title" placeholder="Add Todo" required>
+            <input type="date" name="deadline">
+            <select name="status">
+                <option value="not-started">Not Started</option>
+                <option value="still-working">Still Working</option>
+                <option value="done">Done</option>
+            </select>
+            <select name="priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button type="submit">Add</button>
+        </form>
+
+        <!-- Todo List -->
+        <div class="table-header">
+            <div class="header-item">Title</div>
+            <div class="header-item">Created At</div>
+            <div class="header-item">Deadline</div>
+            <div class="header-item">Status</div>
+            <div class="header-item">Priority</div>
+            <div class="header-item">Actions</div>
+        </div>
+        
+        <ul>
+            {% for todo in todo_list %}
+            <li>
+                <div class="todo-item">
+                    <span class="todo-title">{{ todo.title }}</span>
+                    <span class="todo-created-at">{{ todo.created_at.strftime('%Y-%m-%d') }}</span>
+                    <span class="todo-deadline">{{ todo.deadline.strftime('%Y-%m-%d') if todo.deadline else '' }}</span>
+                    <span class="todo-status">
+                        <!-- Status dropdown for editing -->
+                        <form method="POST" action="/update-status/{{ todo.id }}" class="todo-status">
+                            <select name="status" onchange="this.form.submit()">
+                                <option value="not-started" {% if todo.status == 'not-started' %}selected{% endif %}>Not Started</option>
+                                <option value="still-working" {% if todo.status == 'still-working' %}selected{% endif %}>Still Working</option>
+                                <option value="done" {% if todo.status == 'done' %}selected{% endif %}>Done</option>
+                            </select>
+                        </form>
+                    </span>
+                    <span class="todo-priority">
+                        <!-- Priority dropdown for editing -->
+                        <form method="POST" action="/update-priority/{{ todo.id }}" class="todo-priority">
+                            <select name="priority" onchange="this.form.submit()">
+                                <option value="Low" {% if todo.priority == 'Low' %}selected{% endif %}>Low</option>
+                                <option value="Medium" {% if todo.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                                <option value="High" {% if todo.priority == 'High' %}selected{% endif %}>High</option>
+                            </select>
+                        </form>
+                    </span>
+                    <form method="POST" action="/delete/{{ todo.id }}" class="todo-delete">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

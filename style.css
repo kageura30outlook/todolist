@@ -1,0 +1,219 @@
+body { 
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    width: 900px; /* Container width */
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+input[type="text"], input[type="date"], select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    margin: 8px 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, select:focus {
+    border-color: #ff5252;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #ff5252;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #e04040;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 30px;
+}
+
+li {
+    background-color: #fafafa;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+li form {
+    display: inline;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.header-item {
+    flex: 1;
+    padding: 0 15px;
+    color: #333;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    gap: 15px;
+}
+
+.todo-title,
+.todo-created-at,
+.todo-deadline,
+.todo-status,
+.todo-priority,
+.todo-delete {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.todo-status {
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+    flex: 1.5;
+    text-align: center;
+}
+
+.todo-priority {
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+    flex: 1.5; /* Ensure priority takes up the same width as status */
+    text-align: center;
+}
+
+.todo-status select,
+.todo-priority select {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    text-align: center;
+}
+
+/* Filter Styling */
+.filter, .filter_priority {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    width: 100%; /* Ensure filters take full width of container */
+}
+
+.filter form, .filter_priority form {
+    display: inline-flex;
+    align-items: center;
+    max-width: 200px;  /* Limit the width of the filter area */
+    width: 25%;  /* Ensure form elements take full width of the max-width */
+}
+
+.filter select, .filter_priority select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    width: 150px; /* Limit width of select box */
+}
+
+.filter select:focus, .filter_priority select:focus {
+    border-color: #ff5252;
+}
+
+.filter label, .filter_priority label {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+/* Table Layout */
+.table-header {
+    background-color: #f9f9f9;
+    padding: 10px 0;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.table-header .header-item {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.todo-item {
+    border-bottom: 2px solid #ddd;
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-status {
+    border-left: 2px solid #ddd;
+    padding-left: 20px;
+}
+
+.todo-priority {
+    font-weight: bold;
+    color: #333;
+    text-transform: capitalize;
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+}
+
+.todo-delete {
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+}
